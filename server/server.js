@@ -30,16 +30,16 @@ passport.use(new Auth0Strategy({
     callbackURL: process.env.AUTH_CALLBACK
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
-console.log(profile)
-    // db.find_user([ profile.identities[0].user_id ]).then( user => {
-    //     if ( user[0] ) {
-    //         return done( null, user );       
-    //     } else {        
-    //      db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
-    //            return done( null, user[0] ); 
-    //         })
-    //     }   
-    // })
+
+    db.find_user([ profile.identities[0].user_id ]).then( user => {
+        if ( user[0] ) {
+            return done( null, user );       
+        } else {        
+         db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
+               return done( null, user[0] ); 
+            })
+        }   
+    })
 }))
 
 passport.serializeUser((user, done) => {
