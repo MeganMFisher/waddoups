@@ -19,9 +19,9 @@ app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-massive(process.env.DATABASE_URL).then( db => {
-    app.set('db', db);
-})
+// massive(process.env.DATABASE_URL).then( db => {
+//     app.set('db', db);
+// })
 
 passport.use(new Auth0Strategy({
     domain: process.env.AUTH_DOMAIN,
@@ -31,15 +31,18 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
 
-    db.find_user([ profile.identities[0].user_id ]).then( user => {
-        if ( user[0] ) {
-            return done( null, user );       
-        } else {        
-         db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
-               return done( null, user[0] ); 
-            })
-        }   
-    })
+    const user = {name: 'megan'}
+
+    // db.find_user([ profile.identities[0].user_id ]).then( user => {
+    //     if ( user[0] ) {
+    //         return done( null, user );       
+    //     } else {        
+    //      db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
+    //            return done( null, user[0] ); 
+    //         })
+    //     }   
+    // })
+    return done(null, user)
 }))
 
 passport.serializeUser((user, done) => {
@@ -47,18 +50,20 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-    app.get('db').find_session_user([user.id]).then( user => {
-        return done(null, user[0]);
-    })
+    // app.get('db').find_session_user([user.id]).then( user => {
+    //     return done(null, user[0]);
+    // })
+    done(null, user);
 });
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/home',
+    successRedirect: 'http://localhost:3000/#/admin',
     failureRedirect: 'http://localhost:3000/#/'
 }))
 
 app.get('/auth/me', (req, res, next) => {
+    console.log(req.user)
     if (!req.user) {
         return res.status(404).send('User not found');
     } else {

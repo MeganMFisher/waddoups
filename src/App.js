@@ -6,6 +6,7 @@ import Contact from './components/Contact/Contact';
 import Home from './components/Home/Home';
 import Training from './components/Training/Training';
 import Login from './components/Login/Login';
+import Admin from './components/Admin/Admin';
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
               <Route component={ Login } path='/login' />
               <Route component={ Training } path='/training' />
               <Route component={ Cart } path='/cart' />
+              <Route component={ Admin } path='/admin' />
             </div> 
         );
     }
