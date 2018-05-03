@@ -69,6 +69,14 @@ app.get('/auth/me', (req, res, next) => {
         return res.status(200).send(req.user);
     }
 })
+
+app.get('/auth/authorized', (req, res) => { 
+    if(!req.user) { 
+      return res.send(false)
+    } else {
+      return res.status(200).send(req.user);
+    }
+})
     
 app.get('/auth/logout', (req, res) => {
     req.logOut();

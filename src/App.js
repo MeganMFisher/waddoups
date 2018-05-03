@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Route } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import Contact from './components/Contact/Contact';
@@ -7,6 +6,7 @@ import Home from './components/Home/Home';
 import Training from './components/Training/Training';
 import Login from './components/Login/Login';
 import Admin from './components/Admin/Admin';
+import './App.css';
 
 
 class App extends Component {

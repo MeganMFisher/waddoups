@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './Training.css';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import './Training.css';
 
 export default class Training extends Component {
     render() {
@@ -8,6 +9,7 @@ export default class Training extends Component {
             <div>
                 <Header/>
                 <h1>Training</h1> 
+                <Footer/>
             </div> 
         )
     }

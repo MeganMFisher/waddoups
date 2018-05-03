@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import './Home.css';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import './Home.css';
 
 
 export default class Home extends Component {
@@ -10,6 +10,7 @@ export default class Home extends Component {
             <div> 
                 <Header/>
                 <h1>Home</h1>
+                <Footer/>
             </div> 
         )
     }
