@@ -24,4 +24,5 @@ nav div {
     padding: 5px;
     font-weight: bold;
     width: 40%;
+    cursor: pointer;
 }
