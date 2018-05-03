@@ -63,7 +63,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 }))
 
 app.get('/auth/me', (req, res, next) => {
-    console.log(req.user)
     if (!req.user) {
         return res.status(404).send('User not found');
     } else {
