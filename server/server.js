@@ -4,20 +4,12 @@ const express = require('express')
 , bodyParser = require('body-parser')
 , passport = require('passport')
 , Auth0Strategy = require('passport-auth0')
-// , massive = require('massive')
-// , Sequelize = require('sequelize')
+, massive = require('massive')
 , session = require('express-session')
 
 const app = express();
-// const sequelize = new Sequelize(process.env.DATABASE_URL);
-// sequelize.authenticate()
-// .then(() => {
-//     console.log('Connection has been established successfully!');
-// })
-// .catch(err => {
-//     console.error('Unable to connect to the database', err);
-// })
 
+// app.use(express.static( `${__dirname}/../build`));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
@@ -27,9 +19,9 @@ app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-// massive(process.env.DATABASE_URL).then( db => {
-//     app.set('db', db);
-// })
+massive(process.env.DATABASE_URL).then( db => {
+    app.set('db', db);
+})
 
 passport.use(new Auth0Strategy({
     domain: process.env.AUTH_DOMAIN,
@@ -39,18 +31,16 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
 
-    const user = {name: 'megan'}
-
-    // db.find_user([ profile.identities[0].user_id ]).then( user => {
-    //     if ( user[0] ) {
-    //         return done( null, user );       
-    //     } else {        
-    //      db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
-    //            return done( null, user[0] ); 
-    //         })
-    //     }   
-    // })
-    return done(null, user)
+    db.find_user([ profile.identities[0].user_id ]).then( user => {
+        console.log(user)
+        if ( user[0] ) {
+            return done( null, user[0] );       
+        } else {        
+         db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
+               return done( null, user[0] ); 
+            })
+        }   
+    })
 }))
 
 passport.serializeUser((user, done) => {
@@ -58,9 +48,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-    // app.get('db').find_session_user([user.id]).then( user => {
-    //     return done(null, user[0]);
-    // })
+    app.get('db').find_session_user([user.id]).then( user => {
+        return done(null, user[0]);
+    })
     done(null, user);
 });
 

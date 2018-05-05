@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(180),
     img TEXT,
     auth_id TEXT,
-    admin BOOLEAN,
+    admin BOOLEAN
 )
