@@ -82,6 +82,9 @@ app.get('/auth/logout', (req, res) => {
 ////NODEMAILER////
 
 app.post('/api/contactAdmin', nodemailerCtrl.contactAdmin);
+app.post('/api/emailClientSurvey', nodemailerCtrl.emailClientSurvey);
+// app.post('/api/monthlyReminder', nodemailerCtrl.monthlyReminder);
+
 
 
 ////ENDPOINTS////
@@ -89,6 +92,7 @@ app.post('/api/contactAdmin', nodemailerCtrl.contactAdmin);
 
 app.get('/api/clients', clientCtrl.getClients);
 app.post('/api/clients', clientCtrl.addClient);
+app.put('/api/unsubscribe', clientCtrl.unsubscribe);
 // app.put('/api/clients', clientCtrl.updateClientSurvey) ???
 
 app.get('/api/invoices', invoicesCtrl.getInvoices);
