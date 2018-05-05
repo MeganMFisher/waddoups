@@ -4,11 +4,19 @@ const express = require('express')
 , bodyParser = require('body-parser')
 , passport = require('passport')
 , Auth0Strategy = require('passport-auth0')
-, massive = require('massive')
+// , massive = require('massive')
+, Sequelize = require('sequelize')
 , session = require('express-session')
 
 const app = express();
-
+const sequelize = new Sequelize(process.env.DATABASE_URL);
+sequelize.authenticate()
+.then(() => {
+    console.log('Connection has been established successfully!');
+})
+.catch(err => {
+    console.error('Unable to connect to the database', err);
+})
 
 app.use(session({
     secret: process.env.SECRET,
