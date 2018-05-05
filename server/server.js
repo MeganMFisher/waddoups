@@ -32,7 +32,6 @@ passport.use(new Auth0Strategy({
     const db = app.get('db');
 
     db.find_user([ profile.identities[0].user_id ]).then( user => {
-        console.log(user)
         if ( user[0] ) {
             return done( null, user[0] );       
         } else {        
@@ -60,19 +59,11 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     failureRedirect: 'http://localhost:3000/#/'
 }))
 
-app.get('/auth/me', (req, res, next) => {
+app.get('/auth/authorized', (req, res, next) => {
     if (!req.user) {
         return res.status(404).send('User not found');
     } else {
         return res.status(200).send(req.user);
-    }
-})
-
-app.get('/auth/authorized', (req, res) => { 
-    if(!req.user) { 
-      return res.send(false)
-    } else {
-      return res.status(200).send(req.user);
     }
 })
     

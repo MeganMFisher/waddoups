@@ -8,12 +8,11 @@ import { getUserInfo } from './../../ducks/reducer';
 class Admin extends Component {
 
     componentDidMount() {
-        axios.get('/auth/authorized').then(user => { 
-            if(!user.data) {
-              this.props.history.push('/') 
-            } 
-        })  
-
+        // axios.get('/auth/authorized').then(user => { 
+        //     if(!user.data) {
+        //       this.props.history.push('/') 
+        //     } 
+        // })  
         this.props.getUserInfo();
     }
 

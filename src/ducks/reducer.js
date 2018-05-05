@@ -19,7 +19,7 @@ export default function reducer(state = initialState, action) {
 
 
 export function getUserInfo() {
-    const userInfo = axios.get('/auth/me').then(res => {
+    const userInfo = axios.get('/auth/authorized').then(res => {
         return res.data;
     })
     return {
