@@ -4,7 +4,8 @@ const _ = require('lodash');
 
 
 
-schedule.scheduleJob({hour: 13, minute: 14, dayOfWeek: 6}, function(){
+schedule.scheduleJob({hour: 13, minute: 16, dayOfWeek: 6}, (req, res) => {
+    console.log('hit')
     
     const transporter = nodemailer.createTransport({
         service: 'gmail',

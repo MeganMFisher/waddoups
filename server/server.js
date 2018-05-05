@@ -10,7 +10,7 @@ const express = require('express')
 , servicesCtrl = require('./controllers/services')
 , invoicesCtrl = require('./controllers/invoices')
 , nodemailerCtrl = require('./controllers/nodemailer')
-, autoEmail = require('./autoEmails/autoEmail');
+, autoEmail = require('./autoEmails/monthlyReminder');
 
 
 const app = express();
