@@ -28,7 +28,6 @@ export default class Unsubscribe extends Component {
         this.setState({
             email: e.target.value
         })
-        console.log(this.state)
     }
 
     render() {
