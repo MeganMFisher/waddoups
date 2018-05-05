@@ -6,6 +6,9 @@ const express = require('express')
 , Auth0Strategy = require('passport-auth0')
 , massive = require('massive')
 , session = require('express-session')
+, clientCtrl = require('./controllers/clients')
+, servicesCtrl = require('./controllers/services')
+, invoicesCtrl = require('./controllers/invoices')
 
 const app = express();
 
@@ -31,11 +34,11 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
 
-    db.find_user([ profile.identities[0].user_id ]).then( user => {
+    db.users.find_user([ profile.identities[0].user_id ]).then( user => {
         if ( user[0] ) {
             return done( null, user[0] );       
         } else {        
-         db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
+         db.users.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {        
                return done( null, user[0] ); 
             })
         }   
@@ -47,7 +50,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-    app.get('db').find_session_user([user.id]).then( user => {
+    app.get('db').users.find_session_user([user.id]).then( user => {
         return done(null, user[0]);
     })
     done(null, user);
@@ -65,12 +68,27 @@ app.get('/auth/authorized', (req, res, next) => {
     } else {
         return res.status(200).send(req.user);
     }
-})
+});
     
 app.get('/auth/logout', (req, res) => {
     req.logOut();
     return res.redirect(302, 'http://localhost:3000/#/');
-})
+});
+
+
+
+app.get('/api/clients', clientCtrl.getClients);
+app.post('/api/clients', clientCtrl.addClient);
+// app.put('/api/clients', clientCtrl.updateClientSurvey) ???
+
+app.get('/api/invoices', invoicesCtrl.getInvoices);
+app.post('/api/invoices', invoicesCtrl.addInvoice);
+
+app.get('/api/services', servicesCtrl.getServices);
+app.post('/api/services', servicesCtrl.addService);
+app.put('/api/services', servicesCtrl.updateService);
+app.delete('/api/services', servicesCtrl.deleteService);
+
 
 
 
