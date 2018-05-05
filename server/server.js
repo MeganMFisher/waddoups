@@ -9,6 +9,7 @@ const express = require('express')
 , clientCtrl = require('./controllers/clients')
 , servicesCtrl = require('./controllers/services')
 , invoicesCtrl = require('./controllers/invoices')
+, nodemailerCtrl = require('./controllers/nodemailer')
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use(passport.session());
 massive(process.env.DATABASE_URL).then( db => {
     app.set('db', db);
 })
+
+/////AUTHENTICATION/////
 
 passport.use(new Auth0Strategy({
     domain: process.env.AUTH_DOMAIN,
@@ -75,6 +78,13 @@ app.get('/auth/logout', (req, res) => {
     return res.redirect(302, 'http://localhost:3000/#/');
 });
 
+
+////NODEMAILER////
+
+app.post('/api/contactAdmin', nodemailerCtrl.contactAdmin);
+
+
+////ENDPOINTS////
 
 
 app.get('/api/clients', clientCtrl.getClients);
