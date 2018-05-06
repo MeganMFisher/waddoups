@@ -14,13 +14,13 @@ const transporter = nodemailer.createTransport({
 module.exports = {
     contactAdmin: (req, res) => {   
         
-        const { email, description } = req.body;
+        const { first_name, last_name, email, description } = req.body;
     
         let mailOptions = {
             from: `"Alyssa Waddoups Fitness" <${process.env.USER_EMAIL}>`,
             to: process.env.ADMIN_EMAIL,
             subject: email,
-            text: description      
+            text: `${first_name} ${last_name} : ${description}`      
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
