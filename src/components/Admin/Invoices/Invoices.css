@@ -1,0 +1,35 @@
+.invoices {
+    display: flex;
+}
+
+.invoices-sideMenu {
+    width: 20%;
+    background: #ddd;
+    height: calc(100vh - 80px);
+}
+
+#invoicesTable {
+    overflow: auto;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    /* height: 80vh; */
+    margin: 40px 5% 0 5%;
+}
+
+#invoicesTable td, #invoicesTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#invoicesTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#invoicesTable tr:hover {background-color: #ddd;}
+
+#invoicesTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f6d9c9;
+    color: white;
+}

@@ -7,7 +7,7 @@ module.exports = {
     },
 
     addInvoice: (req, res) => {
-        const { total, client_email, client_name, purchased } = req.body;
+        const { total, client_email, client_name, service, purchased } = req.body;
         const db = req.app.get('db');
         db.invoices.create_invoice(total, client_email, client_name, purchased).then(resp => {
             res.send(resp)

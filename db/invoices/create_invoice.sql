@@ -1,5 +1,5 @@
 INSERT INTO invoices
-(total, client_email, client_name, purchased)
+(total, client_email, client_name, service, purchased)
 VALUES
 ($1, $2, $3, $4)
 RETURNING *;
