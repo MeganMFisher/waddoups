@@ -23,18 +23,22 @@ export default class Footer extends Component {
     }
 
     handleSubmit() {
-        console.log(this.state)
-        if(!this.state.firstName || !this.state.lastName || !this.state.email || !this.state.description) {
+        console.log(this.firstName.value)
+        if(!this.firstName.value || !this.lastName.value || !this.email.value || !this.description.value) {
             alert('Please complete all boxes')
         } else {
             const body = {
-                first_name: this.state.firstName,
-                last_name: this.state.lastName,
-                email: this.state.email,
-                description: this.state.description
+                first_name: this.firstName.value,
+                last_name: this.lastName.value,
+                email: this.email.value,
+                description: this.description.value
             }
+            console.log('body', body)
             axios.post('/api/contactAdmin', body).then(res => {
-                console.log(res.data)
+                this.firstName.value = '';
+                this.lastName.value = '';
+                this.email.value = '';
+                this.description.value = '';
             })
         }
     }
@@ -42,10 +46,10 @@ export default class Footer extends Component {
     render() {
         return (
             <div className='footer-container'>
-                <input placeholder='First Name' onChange={(e) => this.handleInput(e, 'firstName')}/>
-                <input placeholder='Last Name' onChange={(e) => this.handleInput(e, 'lastName')}/>
-                <input placeholder='Email' onChange={(e) => this.handleInput(e, 'email')}/>
-                <input placeholder='Message' onChange={(e) => this.handleInput(e, 'description')}/>
+                <input placeholder='First Name' ref={input => this.firstName = input}/>
+                <input placeholder='Last Name' ref={input => this.lastName = input}/>
+                <input placeholder='Email' ref={input => this.email = input}/>
+                <input placeholder='Message' ref={input => this.description = input}/>
                 <button onClick={this.handleSubmit}>Submit</button>
             </div> 
         )
