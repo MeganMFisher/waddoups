@@ -25,13 +25,11 @@ class Admin extends Component {
             <div className='admin'> 
                 <nav>
                     <h1>Welcome Alyssa!</h1> 
-                    <div> 
-                        <div>
-                            <Link to='/admin'><h3>Clients</h3></Link>     
-                            <Link to='/admin/invoices'><h3>Invoices</h3></Link>  
-                            <Link to='/admin/services'><h3>Services</h3></Link>              
-                        </div> 
-                        <a href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                    <div className='admin-links'> 
+                            <Link to='/admin'><p>Clients</p></Link>     
+                            <Link to='/admin/invoices'><p>Invoices</p></Link>  
+                            <Link to='/admin/services'><p>Services</p></Link>              
+                        <a href='http://localhost:3005/auth/logout'><p>Sign Out</p></a>
                     </div>
 
                 </nav>
