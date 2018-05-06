@@ -22,15 +22,18 @@ class Admin extends Component {
 
     render() {
         return (
-            <div> 
+            <div className='admin'> 
                 <nav>
                     <h1>Welcome Alyssa!</h1> 
-                    <div>  
-                        <Link to='/admin'><h3>Clients</h3></Link>     
-                        <Link to='/admin/invoices'><h3>Invoices</h3></Link>  
-                        <Link to='/admin/services'><h3>Services</h3></Link>              
+                    <div> 
+                        <div>
+                            <Link to='/admin'><h3>Clients</h3></Link>     
+                            <Link to='/admin/invoices'><h3>Invoices</h3></Link>  
+                            <Link to='/admin/services'><h3>Services</h3></Link>              
+                        </div> 
+                        <a href='http://localhost:3005/auth/logout'><button>Log out</button></a>
                     </div>
-                    <a href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+
                 </nav>
                 <div>
                     <Switch>

@@ -3,3 +3,8 @@
 body {
     font-family: Roboto;
 }
+
+input:focus {
+    outline: none;
+    border: none;
+ }

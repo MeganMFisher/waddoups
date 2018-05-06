@@ -1,4 +1,4 @@
-nav {
+.header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,16 +6,20 @@ nav {
     height: 100px;
     background: #fafafa;
 }
-
-nav img {
-    padding-left: 20px;
+/* 
+.header mobileNav {
+    padding-right: 20px;
 }
 
-nav div {
+.header webNav img {
+    padding-left: 20px;
+} */
+
+/* .header webNav {
     display: flex;
     justify-content: space-between;
     padding-right: 20px;
-}
+} */
 
 .links {
     text-decoration: none;
@@ -25,4 +29,28 @@ nav div {
     font-weight: bold;
     width: 40%;
     cursor: pointer;
+}
+
+.webNav {
+    display: none;
+
+}
+
+.mobileNav {
+    display: block;
+}
+
+
+
+@media(min-width: 600px) {
+    body {
+        background: green;
+    }
+    .webNav {
+        display: block;
+    }
+
+    .mobileNav {
+        display: none;
+    }
 }

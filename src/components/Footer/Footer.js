@@ -25,12 +25,16 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <div className='footer-container'>
-                <input placeholder='First Name' ref={input => this.firstName = input}/>
-                <input placeholder='Last Name' ref={input => this.lastName = input}/>
-                <input placeholder='Email' ref={input => this.email = input}/>
-                <input placeholder='Message' ref={input => this.description = input}/>
-                <RaisedButton label='Submit' onClick={this.handleSubmit.bind(this)} />
+            <div className='footer'>
+                <div>
+                    <div>
+                        <input placeholder='First Name' ref={input => this.firstName = input}/>
+                        <input placeholder='Last Name' ref={input => this.lastName = input}/>
+                        <input placeholder='Email' ref={input => this.email = input}/>
+                        <input placeholder='Message' ref={input => this.description = input}/>
+                    </div>
+                    <RaisedButton label='Submit' onClick={this.handleSubmit.bind(this)} />
+                </div>
             </div> 
         )
     }
