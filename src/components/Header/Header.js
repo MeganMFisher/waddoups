@@ -31,11 +31,13 @@ export default class Header extends Component {
                         <Link to='/' className='links'>Home</Link>
                         <Link to='/training' className='links'>Training</Link>
                         <Link to='/contact' className='links'>Contact</Link>
-                        <img src='../../assets/cart.png' width="32" height="32" />
+                        <Link to='/cart' className='links'><img src='../../assets/cart.png' alt='cart' width="32" height="32" /></Link>
                     </div>
-                    <IconButton onClick={this.handleToggle} className='mobileNav'>
-                        <img src='https://cdn2.iconfinder.com/data/icons/mobile-and-web/100/menu1-512.png' width='50' height='50'/>
-                    </IconButton>
+                    <div className='mobileNav'>
+                        <IconButton onClick={this.handleToggle}>
+                            <img src='https://cdn2.iconfinder.com/data/icons/mobile-and-web/100/menu1-512.png' width='50' height='50'/>
+                        </IconButton>
+                    </div>
                 </nav>
 
                 <Drawer
@@ -52,6 +54,9 @@ export default class Header extends Component {
                     </NavLink >
                     <NavLink to="/contact" style={{ textDecoration: 'none', color: 'unset' }} >
                         <ListItem primaryText='Contact' />
+                    </NavLink >
+                    <NavLink to="/cart" style={{ textDecoration: 'none', color: 'unset' }} >
+                        <ListItem primaryText='Cart' />
                     </NavLink >
                 </Drawer>
             </div> 
