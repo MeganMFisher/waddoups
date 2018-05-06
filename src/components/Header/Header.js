@@ -4,6 +4,9 @@ import './Header.css';
 import Drawer from 'material-ui/Drawer';
 import {ListItem} from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
+import logo from './../../assets/insta.jpg';
+import menu from './../../assets/hamburger.svg';
+import cart from './../../assets/cart.png';
 
 
 export default class Header extends Component {
@@ -26,16 +29,21 @@ export default class Header extends Component {
         return (
             <div className='header'> 
                 <nav>
-                    <img src='../../assets/insta.png' alt='Logo' width='50' height='50' />
-                    <div className='webNav'>
-                        <Link to='/' className='links'>Home</Link>
-                        <Link to='/training' className='links'>Training</Link>
-                        <Link to='/contact' className='links'>Contact</Link>
-                        <Link to='/cart' className='links'><img src='../../assets/cart.png' alt='cart' width="32" height="32" /></Link>
+                    <div className='header-logo'>
+                        <img src={logo} alt='Logo' width='50' height='50' />
+                        <p>Alyssa Waddoups</p>
                     </div>
-                    <div className='mobileNav'>
+                    <div className='header-webNav'>
+                        <div>
+                            <Link to='/' className='header-links'>Home</Link>
+                            <Link to='/training' className='header-links'>Training</Link>
+                            <Link to='/contact' className='header-links'>Contact</Link>
+                            <Link to='/cart' className='header-links'><img src={cart} alt='cart' width="22" height="22" /></Link>
+                        </div>
+                    </div>
+                    <div className='header-mobileNav'>
                         <IconButton onClick={this.handleToggle}>
-                            <img src='https://cdn2.iconfinder.com/data/icons/mobile-and-web/100/menu1-512.png' width='50' height='50'/>
+                            <img src={menu} width='30' height='30'/>
                         </IconButton>
                     </div>
                 </nav>
