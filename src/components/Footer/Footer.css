@@ -1,21 +1,29 @@
 .footer {
     background: #f6d9c9;
     width: 100%;
-    height: 300px;
+    height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* .footer contactContainer {
+.footer-inputs {
+    height: 70%;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 200px;
-} */
+    justify-content: space-around;
+}
 
-/* .footer inputContainer {
-    width: 80%;
-    height: 200px;
-    display: flex;
-} */
+.footer-inputs input {
+    width: 270px;
+    height: 35px;
+    padding-left: 10px;
+}
+
+.footer-inputs input::placeholder {
+    color: lightgrey;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+

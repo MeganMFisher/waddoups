@@ -29,10 +29,10 @@ export default class Header extends Component {
         return (
             <div className='header'> 
                 <nav>
-                    <div className='header-logo'>
-                        <img src={logo} alt='Logo' width='50' height='50' />
+                    <a className='header-logo' href='https://www.instagram.com/alyssawaddoups/' target="_blank">
+                        <img src={logo} alt='Logo' width='50' height='50'/>
                         <p>Alyssa Waddoups</p>
-                    </div>
+                    </a>
                     <div className='header-webNav'>
                         <div>
                             <Link to='/' className='header-links'>Home</Link>
