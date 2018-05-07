@@ -28,3 +28,7 @@
     cursor: pointer;
 }
 
+.admin-links a {
+    text-decoration: none;
+}
+
